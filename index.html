@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery Mobile -->
+    <link rel="stylesheet"
+    href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Dark Background */
+        .ui-page {
+            background: #080b12 !important;
+            color: white !important;
+            text-shadow: none !important;
+        }
+
+        .ui-content {
+            padding: 14px !important;
+        }
+
+        /* Stylish Header */
+        .app-header {
+            background: #080b12 !important;
+            color: white !important;
+            border: none !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }
+
+        .app-header h1 {
+            font-size: 22px !important;
+            font-weight: bold !important;
+            letter-spacing: 1px;
+            margin: 8px !important;
+            padding: 6px !important;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            background: #101d35;
+            border-left: 4px solid #2563eb;
+            padding: 15px 12px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+
+        .welcome h2 {
+            font-size: 20px;
+            margin: 4px 0 8px;
+            color: white;
+        }
+
+        .welcome p {
+            font-size: 12px;
+            color: #b7c5dd;
+            margin: 4px 0;
+        }
+
+        h3 {
+            font-size: 15px !important;
+            color: #93c5fd !important;
+        }
+
+        /* Short Home Buttons */
+        #home .ui-content > a.ui-btn {
+            width: 65%;
+            margin: 10px auto !important;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* All Buttons */
+        .ui-btn,
+        .blue-btn {
+            background: #172554 !important;
+            color: white !important;
+            border: 1px solid #263d70 !important;
+            text-shadow: none !important;
+            font-size: 13px !important;
+            padding: 9px !important;
+            border-radius: 6px !important;
+        }
+
+        /* Note Cards */
+        .note-card {
+            background: #111722 !important;
+            border: 1px solid #253047 !important;
+            border-left: 4px solid #2563eb !important;
+            padding: 10px !important;
+            margin: 8px 0 !important;
+            border-radius: 7px;
+        }
+
+        .note-card h3 {
+            margin: 4px 0;
+        }
+
+        .note-card p {
+            font-size: 12px;
+            color: #d1d5db;
+            overflow-wrap: anywhere;
+        }
+
+        /* Input Fields */
+        label {
+            color: #cbd5e1 !important;
+            font-size: 13px !important;
+        }
+
+        input,
+        textarea {
+            background: #111722 !important;
+            color: white !important;
+            border: 1px solid #334155 !important;
+            font-size: 13px !important;
+        }
+
+        .ui-input-text,
+        .ui-input-search,
+        .ui-select {
+            background: #111722 !important;
+            border-color: #334155 !important;
+        }
+
+        .ui-select .ui-btn {
+            background: #111722 !important;
+            color: white !important;
+        }
+
+        textarea {
+            min-height: 100px !important;
+        }
+
+        #message {
+            color: #60a5fa;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- PAGE 1: HOME -->
+<div data-role="page" id="home">
+
+    <div data-role="header" class="app-header">
+        <h1>Note</h1>
+    </div>
+
+    <div role="main" class="ui-content">
+
+        <div class="welcome">
+            <h2>Your Notes.</h2>
+            <p>Keep your thoughts in one place.</p>
+        </div>
+
+        <a href="#addnote" class="ui-btn">
+            + Add New Note
+        </a>
+
+        <a href="#viewnotes" class="ui-btn">
+            View All Notes
+        </a>
+
+        <h3>Features</h3>
+
+        <div class="note-card">
+            <h3>Simple & Clean</h3>
+            <p>Write your thoughts without distractions.</p>
+        </div>
+
+        <div class="note-card">
+            <h3>Stay Organized</h3>
+            <p>Keep your important notes together.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PAGE 2: ADD NOTE -->
+<div data-role="page" id="addnote">
+
+    <div data-role="header" class="app-header">
+        <a href="#home" data-icon="home">Home</a>
+        <h1>Add Note</h1>
+    </div>
+
+    <div role="main" class="ui-content">
+
+        <h2>Create Note</h2>
+
+        <form id="noteForm">
+
+            <label for="noteTitle">Title</label>
+            <input type="text" id="noteTitle"
+                   placeholder="Enter title" required>
+
+            <label for="noteCategory">Category</label>
+            <select id="noteCategory">
+                <option value="Personal">Personal</option>
+                <option value="Study">Study</option>
+                <option value="Work">Work</option>
+                <option value="Ideas">Ideas</option>
+            </select>
+
+            <label for="noteContent">Your Note</label>
+            <textarea id="noteContent"
+                      placeholder="Write something..."
+                      required></textarea>
+
+            <button type="submit" class="blue-btn">
+                Save Note
+            </button>
+
+            <a href="#home" class="ui-btn">Cancel</a>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+
+<!-- PAGE 3: VIEW NOTES -->
+<div data-role="page" id="viewnotes">
+
+    <div data-role="header" class="app-header">
+        <a href="#home" data-icon="home">Home</a>
+        <h1>My Notes</h1>
+    </div>
+
+    <div role="main" class="ui-content">
+
+        <h2>All Notes</h2>
+
+        <input type="search" id="searchNotes"
+               placeholder="Search notes...">
+
+        <div id="notesList">
+            <p>No notes yet. Add your first note!</p>
+        </div>
+
+        <a href="#addnote" class="ui-btn">
+            + Add Note
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+function escapeHTML(text) {
+    return String(text).replace(/[&<>"']/g, function (char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[char];
+    });
+}
+
+function displayNotes() {
+    var notes = JSON.parse(localStorage.getItem("notes")) || [];
+    var html = "";
+
+    if (notes.length === 0) {
+        html = "<p>No notes yet. Add your first note!</p>";
+    }
+
+    notes.slice().reverse().forEach(function (note) {
+        html += `
+            <div class="note-card">
+                <h3>${escapeHTML(note.title)}</h3>
+                <p>Category: ${escapeHTML(note.category)}</p>
+                <p>${escapeHTML(note.content).replace(/\n/g, "<br>")}</p>
+                <button class="blue-btn"
+                    onclick="deleteNote(${note.id})">
+                    Delete
+                </button>
+            </div>
+        `;
+    });
+
+    $("#notesList").html(html).enhanceWithin();
+}
+
+$(document).on("submit", "#noteForm", function (e) {
+    e.preventDefault();
+
+    var title = $("#noteTitle").val().trim();
+    var category = $("#noteCategory").val();
+    var content = $("#noteContent").val().trim();
+
+    if (!title || !content) {
+        alert("Please enter title and note!");
+        return;
+    }
+
+    var notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+    notes.push({
+        id: Date.now(),
+        title: title,
+        category: category,
+        content: content
+    });
+
+    localStorage.setItem("notes", JSON.stringify(notes));
+
+    $("#message").text("Note saved successfully!");
+
+    this.reset();
+    displayNotes();
+});
+
+function deleteNote(id) {
+    if (!confirm("Delete this note?")) {
+        return;
+    }
+
+    var notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+    notes = notes.filter(function (note) {
+        return note.id !== id;
+    });
+
+    localStorage.setItem("notes", JSON.stringify(notes));
+    displayNotes();
+}
+
+$(document).on("pagebeforeshow", "#viewnotes", function () {
+    displayNotes();
+});
+
+$(document).on("input", "#searchNotes", function () {
+    var query = $(this).val().toLowerCase();
+
+    $("#notesList .note-card").each(function () {
+        $(this).toggle(
+            $(this).text().toLowerCase().indexOf(query) !== -1
+        );
+    });
+});
+
+</script>
+
+</body>
+</html>
